@@ -1,4 +1,5 @@
 using Kmet_API.Context;
+using Kmet_API_Business.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,9 @@ namespace Kmet_API
         {
             services.AddDbContext<DatabaseContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Db")));
+
+            services.AddIdentityCore<User>()
+                .AddEntityFrameworkStores<DatabaseContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

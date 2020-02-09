@@ -4,14 +4,16 @@ using Kmet_API.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kmet_API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200209182142_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,29 +191,6 @@ namespace Kmet_API.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "ee9ee827-c5a8-4c36-9e6f-d6bf4a823a10",
-                            ConcurrencyStamp = "269535a1-dac5-40b4-9b69-c8b1aacecb27",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "f8bf5302-d185-4658-9269-88441bee79cb",
-                            ConcurrencyStamp = "6b01dd2b-5a78-4f23-9770-154e87809936",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "f6a0dd23-ab51-45c9-b02e-c4fe417b5a4f",
-                            ConcurrencyStamp = "2a8c3416-890d-4aa7-9faf-48304854b681",
-                            Name = "Seller",
-                            NormalizedName = "SELLER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
