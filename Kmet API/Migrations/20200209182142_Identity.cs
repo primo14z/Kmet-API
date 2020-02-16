@@ -54,7 +54,7 @@ namespace Kmet_API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Quantity = table.Column<double>(nullable: false),
                     Picture = table.Column<string>(nullable: true),
@@ -179,9 +179,9 @@ namespace Kmet_API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SellerId = table.Column<string>(nullable: true),
-                    BuyerId = table.Column<string>(nullable: true),
-                    ItemId = table.Column<int>(nullable: true),
+                    SellerId = table.Column<string>(nullable: false),
+                    BuyerId = table.Column<string>(nullable: false),
+                    ItemId = table.Column<int>(nullable: false),
                     Quantity = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     OrderSubmited = table.Column<DateTime>(nullable: false),

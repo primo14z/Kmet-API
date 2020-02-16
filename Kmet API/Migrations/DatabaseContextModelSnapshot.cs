@@ -37,6 +37,7 @@ namespace Kmet_API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -62,9 +63,10 @@ namespace Kmet_API.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BuyerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("ItemId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderCompleted")
@@ -80,6 +82,7 @@ namespace Kmet_API.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("SellerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -193,22 +196,22 @@ namespace Kmet_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ee9ee827-c5a8-4c36-9e6f-d6bf4a823a10",
-                            ConcurrencyStamp = "269535a1-dac5-40b4-9b69-c8b1aacecb27",
+                            Id = "3008423e-c33c-4efe-8a85-8a288cbcbce2",
+                            ConcurrencyStamp = "315c228e-fa7c-49c1-b8b4-6a75bd0fbf52",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "f8bf5302-d185-4658-9269-88441bee79cb",
-                            ConcurrencyStamp = "6b01dd2b-5a78-4f23-9770-154e87809936",
+                            Id = "4b83b574-025e-4fe6-bf81-3f3227464c32",
+                            ConcurrencyStamp = "e976f8b9-d2b7-47ea-97b5-9b5ce2312a34",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f6a0dd23-ab51-45c9-b02e-c4fe417b5a4f",
-                            ConcurrencyStamp = "2a8c3416-890d-4aa7-9faf-48304854b681",
+                            Id = "48c45b15-739e-423a-a9ca-3657b5e009d5",
+                            ConcurrencyStamp = "07913f18-f522-42b2-8d81-c72e44b79b0c",
                             Name = "Seller",
                             NormalizedName = "SELLER"
                         });
@@ -322,15 +325,21 @@ namespace Kmet_API.Migrations
                 {
                     b.HasOne("Kmet_API_Business.Models.User", "Buyer")
                         .WithMany()
-                        .HasForeignKey("BuyerId");
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Kmet_API_Business.Models.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Kmet_API_Business.Models.User", "Seller")
                         .WithMany()
-                        .HasForeignKey("SellerId");
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

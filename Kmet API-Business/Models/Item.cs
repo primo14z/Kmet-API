@@ -10,8 +10,11 @@ namespace Kmet_API_Business.Models
         [Key]
         public int Id { get; set; }
         [MaxLength(50)]
+        [Required]
         public string Name { get; set; }
+        [Required]
         public double Price { get; set; }
+        [Required]
         public double Quantity { get; set; }
         public string Picture { get; set; }
         [MaxLength(250)]
